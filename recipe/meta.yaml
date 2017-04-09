@@ -14,7 +14,7 @@ build:
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
-  build:
+  host:
     - python
     - pip
 
@@ -37,3 +37,4 @@ extra:
   recipe-maintainers:
     - jakirkham
     - nicoddemus
+    - mingwandroid
