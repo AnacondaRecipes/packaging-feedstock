@@ -14,9 +14,11 @@ build:
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
+
   host:
     - python
     - pip
+    - flit
 
   run:
     - python
