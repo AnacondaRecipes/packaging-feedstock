@@ -10,33 +10,34 @@ source:
 
 build:
   number: 0
+  skip: True  # [py<36]
   noarch: python
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
 
   host:
-    - python >=3.6
+    - python
     - pip
     - setuptools >=40.8.0
     - wheel
-
   run:
     - python >=3.6
-    - pyparsing >=2.0.2
+    - pyparsing >=2.0.2,!=3.0.5
 
 test:
   imports:
     - packaging
   requires:
     - pip
+    - python <3.10
   commands:
     - pip check
 
 
 about:
   home: https://github.com/pypa/packaging
-  license: Apache 2.0 or BSD 2-Clause
+  license: Apache-2.0 or BSD-2-Clause
   license_file: LICENSE
   license_family: Apache
   summary: Core utilities for Python packages
