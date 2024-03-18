@@ -1,16 +1,16 @@
-{% set version = "23.1" %}
+{% set name = "packaging" %}
+{% set version = "23.2" %}
 
 package:
-  name: packaging
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/p/packaging/packaging-{{ version }}.tar.gz
-  sha256: a392980d2b6cffa644431898be54b0045151319d1e7ec34f0cfed48767dd334f
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 048fb0e9405036518eaaf48a55953c750c11e1a1b68e0dd1a9d62ed0c092cfc5
 
 build:
   number: 0
-  skip: True  # [py<37]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
@@ -26,9 +26,13 @@ test:
     - packaging
   requires:
     - pip
+    - pytest >=6.2.0
+    - pretend
+  source_files:
+    - tests
   commands:
     - pip check
-
+    - pytest -v tests
 
 about:
   home: https://github.com/pypa/packaging
@@ -49,3 +53,5 @@ extra:
     - jakirkham
     - nicoddemus
     - mingwandroid
+  skip-lints:
+    - missing_wheel
