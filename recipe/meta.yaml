@@ -46,7 +46,7 @@ test:
     - tests
   commands:
     - pip check
-    - pytest -v tests
+    - pytest tests
 
 about:
   home: https://github.com/pypa/packaging
