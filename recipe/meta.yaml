@@ -19,6 +19,11 @@ requirements:
     - python
     - flit-core >=3.12
     - pip
+    # workaround to avoid pulling 'packaging' itself as a runtime dependency from wheel >0.45.1,
+    # otherwise conda-build would fail to build the package with an error:
+    # raise RuntimeError(f"{self.name()} cannot depend on itself")
+    # RuntimeError: packaging cannot depend on itself
+    - wheel <=0.45.1
   run:
     - python
 
@@ -43,6 +48,7 @@ test:
     - pytest >=6.2.0
     - pretend
     - tomli # [py<311]
+    - tomli-w
   source_files:
     - tests
   commands:
