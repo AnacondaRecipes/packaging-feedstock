@@ -12,8 +12,11 @@ source:
 build:
   number: 0
   skip: true  # [py<38]
-  # Use flit-core and python-installer to build the wheel instead of pip, to avoid circular dependencies
-  script: {{ PYTHON }} -m flit_core.wheel && {{ PYTHON }} -m installer --prefix=$PREFIX dist/*.whl
+  script: 
+    # Use flit-core and python-installer to build the wheel instead of pip, to avoid circular dependencies
+    - {{ PYTHON }} -m flit_core.wheel
+    - {{ PYTHON }} -m installer --prefix="$PREFIX" dist/*.whl  # [unix]
+    - for %f in (dist\*.whl) do {{ PYTHON }} -m installer --prefix="%PREFIX%" "%f"  # [win]
 
 requirements:
   host:
