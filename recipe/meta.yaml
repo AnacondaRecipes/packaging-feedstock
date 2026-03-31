@@ -12,12 +12,14 @@ source:
 build:
   number: 0
   skip: true  # [py<38]
-  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+  # Use flit-core and python-installer to build the wheel instead of pip, to avoid circular dependencies
+  script: {{ PYTHON }} -m flit_core.wheel && {{ PYTHON }} -m installer --prefix=$PREFIX dist/*.whl
 
 requirements:
   host:
     - python
     - flit-core >=3.12
+    - python-installer
   run:
     - python
 
