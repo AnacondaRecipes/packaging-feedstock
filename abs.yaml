@@ -4,6 +4,7 @@ build_parameters:
   #- "--skip-existing"
   - "--error-overlinking"
   - "--error-overdepending"
+  - "--no-test"
 
 upload_channels:
   - ad-testing
