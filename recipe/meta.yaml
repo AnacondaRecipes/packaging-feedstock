@@ -25,6 +25,7 @@ requirements:
     - python-installer
     - pip
   run:
+    - pip
     - python
 
 test:
