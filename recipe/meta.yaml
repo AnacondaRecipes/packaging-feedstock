@@ -1,5 +1,5 @@
 {% set name = "packaging" %}
-{% set version = "26.1" %}
+{% set version = "26.2" %}
 
 package:
   name: {{ name }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: f042152b681c4bfac5cae2742a55e103d27ab2ec0f3d88037136b6bfe7c9c5de
+  sha256: ff452ff5a3e828ce110190feff1178bb1f2ea2281fa2075aadb987c2fb221661
 
 build:
   number: 0
   skip: true  # [py<38]
-  script: 
+  script:
     # Use flit-core and python-installer to build the wheel instead of pip, to avoid circular dependencies
     - {{ PYTHON }} -m flit_core.wheel
     - {{ PYTHON }} -m installer --prefix="$PREFIX" dist/*.whl  # [unix]
@@ -27,6 +27,8 @@ requirements:
     - python
 
 test:
+  source_files:
+    - tests
   imports:
     - packaging
     - packaging._elffile
@@ -42,17 +44,21 @@ test:
     - packaging.utils
     - packaging.version
   requires:
-    - pip
+    - pip >=21.1
     - pytest >=6.2.0
     - hypothesis >=6.0.0
     - pretend
-    - tomli # [py<311]
+    - tomli  # [py<311]
     - tomli-w
-  source_files:
-    - tests
+    - hypothesis >=6.0.0
   commands:
     - pip check
     - pytest -vv tests
+  # This package affects the following packages:
+  # downstreams:
+  #   - deepspeed
+  #   - setuptools-git-versioning
+  #   - vllm
 
 about:
   home: https://github.com/pypa/packaging
@@ -73,4 +79,5 @@ extra:
     - jakirkham
     - nicoddemus
     - mingwandroid
-
+  skip-lints:
+    - missing_test_requirement_pip
