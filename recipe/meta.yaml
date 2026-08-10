@@ -74,3 +74,5 @@ extra:
     - jakirkham
     - nicoddemus
     - mingwandroid
+  skip-lints:
+    - missing_test_requirement_pip
