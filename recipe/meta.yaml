@@ -54,6 +54,10 @@ test:
   commands:
     - pip check
     - pytest -vv tests
+  downstreams:
+    - deepspeed
+    - setuptools-git-versioning
+    - vllm
 
 about:
   home: https://github.com/pypa/packaging
