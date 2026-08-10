@@ -54,10 +54,11 @@ test:
   commands:
     - pip check
     - pytest -vv tests
-  downstreams:
-    - deepspeed
-    - setuptools-git-versioning
-    - vllm
+  # This package affects the following packages:
+  # downstreams:
+  #   - deepspeed
+  #   - setuptools-git-versioning
+  #   - vllm
 
 about:
   home: https://github.com/pypa/packaging
