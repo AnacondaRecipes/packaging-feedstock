@@ -23,7 +23,6 @@ requirements:
     - python
     - flit-core >=3.12
     - python-installer
-    - pip
   run:
     - python
 
