@@ -1,5 +1,5 @@
 {% set name = "packaging" %}
-{% set version = "26.2" %}
+{% set version = "26.3" %}
 
 package:
   name: {{ name }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: ff452ff5a3e828ce110190feff1178bb1f2ea2281fa2075aadb987c2fb221661
+  sha256: 94edc256424af38762eb31306eed28beb9f0efc50a8837492c9d6fd6004aed79
 
 build:
   number: 0
-  skip: true  # [py<38]
+  skip: true  # [py<39]
   script:
     # Use flit-core and python-installer to build the wheel instead of pip, to avoid circular dependencies
     - {{ PYTHON }} -m flit_core.wheel
