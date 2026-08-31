@@ -10,7 +10,7 @@ source:
   sha256: 94edc256424af38762eb31306eed28beb9f0efc50a8837492c9d6fd6004aed79
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<39]
   script:
     # Use flit-core and python-installer to build the wheel instead of pip, to avoid circular dependencies
